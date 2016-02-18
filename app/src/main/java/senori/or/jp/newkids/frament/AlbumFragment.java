@@ -1,12 +1,16 @@
 package senori.or.jp.newkids.frament;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+
+import java.util.ArrayList;
 
 import senori.or.jp.newkids.R;
 
@@ -27,6 +31,8 @@ public class AlbumFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ArrayList<Integer> array_image = new ArrayList<Integer>();
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -58,6 +64,7 @@ public class AlbumFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -65,8 +72,61 @@ public class AlbumFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_album, container, false);
+        View view = inflater.inflate(R.layout.fragment_album, container, false);
+        GridView gridView = (GridView) view.findViewById(R.id.gridView);
+
+        array_image.add(R.drawable.cloudqw);
+        array_image.add(R.drawable.cloudqw);
+        array_image.add(R.drawable.cloudqw);
+        array_image.add(R.drawable.cloudqw);
+        array_image.add(R.drawable.cloudqw);
+        array_image.add(R.drawable.cloudqw);
+        array_image.add(R.drawable.cloudqw);
+        array_image.add(R.drawable.cloudqw);
+        array_image.add(R.drawable.cloudqw);
+        array_image.add(R.drawable.cloudqw);
+
+        MyAdapter adapter = new MyAdapter();
+        gridView.setAdapter(adapter);
+        return view;
     }
+
+
+    class MyAdapter extends BaseAdapter {
+
+        public MyAdapter() {
+
+        }
+
+
+        @Override
+        public int getCount() {
+            return array_image.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return array_image.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView= LayoutInflater.from(getActivity()).inflate(R.layout.album_gridview_item, parent, false);
+
+            }
+            ImageView iv = (ImageView) convertView.findViewById(R.id.imageView);
+            iv.setImageResource(array_image.get(position));
+
+            return convertView;
+        }
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
