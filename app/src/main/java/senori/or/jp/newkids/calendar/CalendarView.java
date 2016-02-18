@@ -24,7 +24,7 @@ import java.util.Locale;
 import senori.or.jp.newkids.DayActivity;
 
 public class CalendarView {
-    private static int ROWS = 7;
+    private static int ROWS = 6;
     private static int COLS = 7;
 
     private Context context;
@@ -133,6 +133,8 @@ public class CalendarView {
         m_cHeight = dis.getHeight() / 11;
         //ROWS = 7 ; /// ��/���
         //COLS = 14 ; /// ĭ/����
+        //add holiday
+        setHoliday();
 
     }
 
@@ -144,7 +146,7 @@ public class CalendarView {
         setContentext();
         setOnEvent();
         printView();
-        addHoliday("05/05");
+
     }
 
     // / �÷��� �Ķ���� ����
@@ -252,16 +254,17 @@ public class CalendarView {
         // / ���� �޷��� ���� ����
         Integer iMonth = m_Calendar.get(Calendar.MONTH) + 1;
 
-        // / ���Ϸ� ����� ��� ��¥ ���� ���� ����
+
         for (int k = 0; k < m_holiDay.size(); k++) {
             String[] holiday = m_holiDay.get(k).split("/"); // / ���� ���� ���Ѵ���
-            Log.d("position1", "" + String.valueOf(holiday));
-            if (holiday[0].equals(String.format("%02d", iMonth)) && holiday[2].equals(String.format("%02d", day))) // / ���� ������ ���
-            {
+
+            if (holiday[0].equals(String.format("%02d", iMonth)) && holiday[1].equals(String.format("%02d", day))) {
 
                 m_cellTextBtn[button]
                         .setTextColor(m_colorParam.m_sundayTextColor);
+                Log.d("position1", "" + holiday[0]);
             }
+
         }
     }
 
@@ -282,7 +285,7 @@ public class CalendarView {
                     if (j % 2 == 0) {
                         int pos = ((i / 2) * COLS) + (j / 2);
 
-                        Log.d("pos1", "" + pos);
+
                         m_celly[pos] = new LinearLayout(context);
                         m_cellTextBtn[pos] = new TextView(context);
                         m_linely[i / 2].addView(m_celly[pos]);
@@ -292,7 +295,7 @@ public class CalendarView {
                     {
                         int pos = ((i / 2) * (COLS - 1)) + (j - 1) / 2;
 
-                        Log.d("pos2", "" + pos);
+
                         m_verticalLine[pos] = new LinearLayout(context);
                         m_linely[i / 2].addView(m_verticalLine[pos]);
                     }
@@ -342,77 +345,77 @@ public class CalendarView {
                     // / ���ϴ� ���� �۾��� �۾� ũ�� �����ϴ� �κ�
 
                     // / ù������ ��ȭ��������� ǥ���ϴ� �κ�
-                    if (i == 0) {
-                        // / ���� ǥ���ϴ� �κ��� ���� ����
-                        m_cellTextBtn[cellnum]
-                                .setLayoutParams(new LinearLayout.LayoutParams(
-                                        m_cWidth, m_tcHeight));
-
-                        // / ���� �۾���
-                        if (m_topCellBgImgId != null) {
-                            m_celly[cellnum]
-                                    .setBackgroundDrawable(m_topCellBgImgId);
-                        } else {
+//                    if (i == 0) {
+//                        // / ���� ǥ���ϴ� �κ��� ���� ����
+//                        m_cellTextBtn[cellnum]
+//                                .setLayoutParams(new LinearLayout.LayoutParams(
+//                                        m_cWidth, m_tcHeight));
+//
+//                        // / ���� �۾���
+//                        if (m_topCellBgImgId != null) {
+//                            m_celly[cellnum]
+//                                    .setBackgroundDrawable(m_topCellBgImgId);
+//                        } else {
 //                            m_celly[cellnum]
 //                                    .setBackgroundColor(m_colorParam.m_topCellColor);
-                        }
+//                        }
+//
+//                        // Saturday - blue, Sunday - Red
+//                        switch (j) {
+//                            case 0:
+//                                m_cellTextBtn[cellnum]
+//                                        .setTextColor(m_colorParam.m_topSundayTextColor);
+//                                break;
+//                            case 6:
+//                                m_cellTextBtn[cellnum]
+//                                        .setTextColor(m_colorParam.m_topSaturdatTextColor);
+//                                break;
+//                            default:
+//                                m_cellTextBtn[cellnum]
+//                                        .setTextColor(m_colorParam.m_topTextColor);
+//                                break;
+//                        }
+//
+//                        // TextSize
+//                        m_cellTextBtn[cellnum].setTextSize(m_topTextSize);
+//                    } else // / ���ϴ� ��¥ ǥ���ϴ� �κ�
+//                    {
 
-                        // / ����ϰ� �Ͽ����� �ٸ� �÷��� ǥ���Ѵ�.
-                        switch (j) {
-                            case 0:
-                                m_cellTextBtn[cellnum]
-                                        .setTextColor(m_colorParam.m_topSundayTextColor);
-                                break;
-                            case 6:
-                                m_cellTextBtn[cellnum]
-                                        .setTextColor(m_colorParam.m_topSaturdatTextColor);
-                                break;
-                            default:
-                                m_cellTextBtn[cellnum]
-                                        .setTextColor(m_colorParam.m_topTextColor);
-                                break;
-                        }
+                    // / ���� ǥ�õǴ� �κ��� ���̿� ����
+                    m_cellTextBtn[cellnum]
+                            .setLayoutParams(new LinearLayout.LayoutParams(
+                                    m_cWidth, m_cHeight));
 
-                        // / �۾� ũ��
-                        m_cellTextBtn[cellnum].setTextSize(m_topTextSize);
-                    } else // / ���ϴ� ��¥ ǥ���ϴ� �κ�
-                    {
-
-                        // / ���� ǥ�õǴ� �κ��� ���̿� ����
-                        m_cellTextBtn[cellnum]
-                                .setLayoutParams(new LinearLayout.LayoutParams(
-                                        m_cWidth, m_cHeight));
-
-                        // / bg�� �۾���
-                        if (m_cellBgImgId != null) {
-                            m_celly[cellnum]
-                                    .setBackgroundDrawable(m_cellBgImgId);
-                        } else {
-                            m_celly[cellnum]
-                                    .setBackgroundColor(m_colorParam.m_cellColor);
-                        }
-
-                        // / ����ϰ� �Ͽ����� �ٸ� �÷��� ǥ���Ѵ�.
-                        switch (j) {
-                            case 0:
-                                m_cellTextBtn[cellnum]
-                                        .setTextColor(m_colorParam.m_sundayTextColor);
-                                break;
-                            case 6:
-                                m_cellTextBtn[cellnum]
-                                        .setTextColor(m_colorParam.m_saturdayTextColor);
-                                break;
-                            default:
-                                m_cellTextBtn[cellnum]
-                                        .setTextColor(m_colorParam.m_textColor);
-                                break;
-                        }
-
-                        // / �۾� ũ��
-                        m_cellTextBtn[cellnum].setTextSize(m_textSize);
+                    // / bg�� �۾���
+                    if (m_cellBgImgId != null) {
+                        m_celly[cellnum]
+                                .setBackgroundDrawable(m_cellBgImgId);
+                    } else {
+                        m_celly[cellnum]
+                                .setBackgroundColor(m_colorParam.m_cellColor);
                     }
 
+                    // Saturday - blue, Sunday - Red
+                    switch (j) {
+                        case 0:
+                            m_cellTextBtn[cellnum]
+                                    .setTextColor(m_colorParam.m_sundayTextColor);
+                            break;
+                        case 6:
+                            m_cellTextBtn[cellnum]
+                                    .setTextColor(m_colorParam.m_saturdayTextColor);
+                            break;
+                        default:
+                            m_cellTextBtn[cellnum]
+                                    .setTextColor(m_colorParam.m_textColor);
+                            break;
+                    }
+
+                    // / �۾� ũ��
+                    m_cellTextBtn[cellnum].setTextSize(m_textSize);
                 }
+
+//                }
             }
         }
     }
@@ -441,16 +444,17 @@ public class CalendarView {
 
     // / �޷��� �����ϴ� �� �� ���� �����ϱ�
     public void setContentext() {
-        // / �޷��� �ϳ� �����ؼ� �۾��Ѵ�.
+        setLayoutParams();
+        // Copy Calendar
         iCal = (Calendar) m_Calendar.clone();
 
-        // / ��¥�� ��~
+        // get Date
         m_selDay = iCal.get(Calendar.DATE);
 
         // / ��¥�� 1�� �����Ͽ� ���� 1���� ���� �������� ����
         iCal.set(Calendar.DATE, 1);
         // / ����ǥ���ϴ� �� �� 7ĭ + ������ ù �����ϴ� ĭ��
-        m_starPos = COLS + iCal.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY;
+        m_starPos = iCal.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY;
 
         // / 1�� ���ؼ� ������ 1�Ϸ� ������ٰ� 1���� ���� ���� ���������� ������
         iCal.add(Calendar.MONTH, 1);
@@ -459,18 +463,16 @@ public class CalendarView {
         m_lastDay = iCal.get(Calendar.DAY_OF_MONTH); // / �ش� ���� �������� ��~
 
         // / 0���� 6��ĭ������ ��ȭ���������~ �� ä������
-        for (int k = 0; k < COLS; k++) {
-            // m_cellTextBtn[k].setText(m_dayText[k % 7]);
-        }
+//        for (int k = 0; k < COLS; k++) {
+//            m_cellTextBtn[k].setText("월");
+//        }
 
-        // / 7������ ó�� ������ġ �������� �������� ä��
-        for (int i = COLS; i < m_starPos; i++) {
+        // first day
+        for (int i = 0; i < m_starPos; i++) {
             m_cellTextBtn[i].setText("");
             m_cellTextBtn[i].setBackgroundColor(Color.TRANSPARENT);
 
         }
-
-
 
 
         // / ������ġ���ʹ� 1���� �ؼ� ���� ������������ ���ڷ� ä��
@@ -480,12 +482,12 @@ public class CalendarView {
             //Log.v("position", "" + m_lastDay);
             // m_cellTextBtn[i + m_starPos].setBackground(null);
             m_cellTextBtn[i + m_starPos].setText((i + 1) + "");
-
+            applyHoliday(i + m_starPos, i + 1);
             int year = iCal.get(Calendar.YEAR);
             int month = iCal.get(Calendar.MONTH) + 1;
             int day = i + 1;
             m_cellTextBtn[i + m_starPos].setBackgroundColor(Color.WHITE);
-            applyHoliday(i + m_starPos, i + 1);
+
             if (Calendar.getInstance().get(Calendar.YEAR) == year && Calendar.getInstance().
                     get(Calendar.MONTH) + 1 == month && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) == i + 1) {
                 m_cellTextBtn[i + m_starPos].setBackgroundColor(Color.rgb(181, 197, 230));
@@ -510,7 +512,7 @@ public class CalendarView {
         }
 
         m_nextDay = 1;
-        // / ������������ �������� �������� ä��
+        // lastday end
         for (int i = m_starPos + m_lastDay;
              i < COLS * ROWS; i++) {
 
@@ -710,5 +712,9 @@ public class CalendarView {
     public float getratingAvg() {
         return m_ratingAvg / m_sum;
 
+    }
+
+    private void setHoliday() {
+        addHoliday("05/05");
     }
 }
