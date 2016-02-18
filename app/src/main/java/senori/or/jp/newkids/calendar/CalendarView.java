@@ -525,7 +525,7 @@ public class CalendarView {
     // / �� ��ư�鿡 setOnClickListener �ֱ�
     public void setOnEvent() {
         // / ��ȭ��������� ���ִ� �κп��� ������ ������ �ʿ� ����
-        for (int i = COLS; i < COLS * ROWS; i++) {
+        for (int i = 0; i < COLS * ROWS; i++) {
             final int k = i;
             m_cellTextBtn[i].setOnClickListener(new Button.OnClickListener() {
                 @Override
