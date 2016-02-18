@@ -6,15 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
+
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
-=======
+
 import android.widget.GridView;
->>>>>>> 2d755dfb91a7d94d418fb2082e8fc43afc14585d
+
 
 import senori.or.jp.newkids.R;
 
@@ -75,7 +75,7 @@ public class AlbumFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-<<<<<<< HEAD
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_album, container, false);
         GridView gridView = (GridView) view.findViewById(R.id.gridView);
@@ -93,11 +93,8 @@ public class AlbumFragment extends Fragment {
 
         MyAdapter adapter = new MyAdapter();
         gridView.setAdapter(adapter);
-=======
-        View view = inflater.inflate(R.layout.fragment_album, container, false);
 
 
->>>>>>> 2d755dfb91a7d94d418fb2082e8fc43afc14585d
         return view;
     }
 
@@ -127,7 +124,7 @@ public class AlbumFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView= LayoutInflater.from(getActivity()).inflate(R.layout.album_gridview_item, parent, false);
+                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.album_gridview_item, parent, false);
 
             }
             ImageView iv = (ImageView) convertView.findViewById(R.id.imageView);
