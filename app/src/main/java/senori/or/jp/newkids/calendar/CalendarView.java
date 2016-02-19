@@ -717,4 +717,11 @@ public class CalendarView {
     private void setHoliday() {
         addHoliday("05/05");
     }
+
+    public void setDate(int year, int month) {
+        m_Calendar.set(Calendar.YEAR, year);
+        m_Calendar.set(Calendar.MONTH, month);
+
+        setContentext();
+    }
 }

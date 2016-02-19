@@ -1,12 +1,10 @@
 package senori.or.jp.newkids;
 
-import android.graphics.Bitmap;
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,7 +37,8 @@ public class MainActivity extends AppCompatActivity
     private TextView text_year;
     private ImageButton preButton;
     private ImageButton nextButton;
-
+    float x1, x2;
+    float y1, y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         preButton.setOnClickListener(this);
         nextButton.setOnClickListener(this);
-
+        text_year.setOnClickListener(this);
 
         DateFormatSymbols dfs = DateFormatSymbols.getInstance();
         String[] weekdays = dfs.getShortWeekdays();
@@ -91,14 +91,14 @@ public class MainActivity extends AppCompatActivity
         calendarView = new CalendarView(this, linearLayout);
         calendarView.initCalendar();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -162,7 +162,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(getApplicationContext(), PhotoAlbumActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -194,7 +195,23 @@ public class MainActivity extends AppCompatActivity
 
                 text_year.setText(calendarView.getData("yyyy.MM"));
                 break;
+            case R.id.text_year:
 
+                new DatePickerDialog(MainActivity.this, datePickerDialog, Integer.valueOf(calendarView.getData("yyyy")), Integer.valueOf(calendarView.getData("MM")), 0).show();
+
+                break;
         }
     }
+
+
+    private DatePickerDialog.OnDateSetListener datePickerDialog = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            calendarView.setDate(year, monthOfYear);
+            text_year.setText(calendarView.getData("yyyy.MM"));
+        }
+
+    };
+
 }
