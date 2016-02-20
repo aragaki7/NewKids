@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import senori.or.jp.newkids.adapter.StaggeredAdapter;
 import senori.or.jp.newkids.photoalbum.StaggeredGridView;
 
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.

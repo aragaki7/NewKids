@@ -31,9 +31,8 @@
         <activity android:name=".DayActivity" />
         <activity
             android:name=".PhotoAlbumActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_fullscreen"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:label="@string/gallery"></activity>
+        <activity android:name=".DayActivity"></activity>
     </application>
 
 </manifest>
