@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="senori.or.jp.newkids.frament.NoticeFragment">
+    tools:context="senori.or.jp.newkids.frament.ScheduleFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -10,6 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="공지가 없습니다." />
+        android:text="일정이 없습니다." />
 
 </FrameLayout>

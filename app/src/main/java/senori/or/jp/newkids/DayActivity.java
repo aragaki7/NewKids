@@ -69,7 +69,6 @@ public class DayActivity extends ActionBarActivity implements TabLayout.OnTabSel
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
-        Log.d("position", "" + viewPager.isDrawingCacheEnabled());
 
 
     }
@@ -81,6 +80,6 @@ public class DayActivity extends ActionBarActivity implements TabLayout.OnTabSel
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-        Log.d("position1", "" + viewPager.isDrawingCacheEnabled());
+
     }
 }

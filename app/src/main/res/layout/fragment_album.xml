@@ -5,14 +5,18 @@
     tools:context="senori.or.jp.newkids.frament.AlbumFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="사진이 없습니다." />
 
     <GridView
+        android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="4"
-        android:id="@+id/gridView"
         android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
-        ></GridView>
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"></GridView>
 
 </FrameLayout>

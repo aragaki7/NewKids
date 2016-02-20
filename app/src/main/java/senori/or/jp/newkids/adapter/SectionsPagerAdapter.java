@@ -12,7 +12,9 @@ import android.view.View;
 
 import senori.or.jp.newkids.MainActivity;
 import senori.or.jp.newkids.frament.AlbumFragment;
+import senori.or.jp.newkids.frament.MenuFragment;
 import senori.or.jp.newkids.frament.NoticeFragment;
+import senori.or.jp.newkids.frament.ScheduleFragment;
 
 /**
  * Created by JupiteR on 2016-02-16.
@@ -49,13 +51,13 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
                 break;
             //return new AlbumFragment();
             case 2:
-                fragment = new NoticeFragment();
+                fragment = new ScheduleFragment();
 //                tabLayout.setVisibility(View.VISIBLE);
                 break;
             //return new NoticeFragment();
             case 3:
 
-                fragment = new AlbumFragment();
+                fragment = new MenuFragment();
 //                tabLayout.setVisibility(View.VISIBLE);
                 break;
             //           return new AlbumFragment();
