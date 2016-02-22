@@ -715,7 +715,25 @@ public class CalendarView {
     }
 
     private void setHoliday() {
+
+        addHoliday("01/01");
+        addHoliday("02/07");
+        addHoliday("02/08");
+        addHoliday("02/09");
+        addHoliday("03/01");
+        addHoliday("04/13");
         addHoliday("05/05");
+        addHoliday("05/14");
+        addHoliday("06/06");
+        addHoliday("08/15");
+        addHoliday("09/14");
+        addHoliday("09/15");
+        addHoliday("09/16");
+        addHoliday("10/03");
+        addHoliday("10/09");
+        addHoliday("12/25");
+
+
     }
 
     public void setDate(int year, int month) {

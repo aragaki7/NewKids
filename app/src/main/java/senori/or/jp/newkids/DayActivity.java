@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class DayActivity extends ActionBarActivity implements TabLayout.OnTabSel
         setContentView(R.layout.activity_day);
 
         ActionBar actionBar = getSupportActionBar();
-
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         view = LayoutInflater.from(this).inflate(R.layout.custom_title, null);
         actionBar.setCustomView(view);
@@ -81,5 +82,14 @@ public class DayActivity extends ActionBarActivity implements TabLayout.OnTabSel
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

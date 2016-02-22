@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="기본설정">
+        <Preference android:title="글자크기" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="고급설정">
+        <Preference android:title="알림설정" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="개인정보">
+        <Preference android:title="자동로그인" />
+        <Preference android:title="비밀번호변경" />
+        <Preference android:title="계정탈퇴" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="고객지원">
+        <Preference android:title="메일" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
