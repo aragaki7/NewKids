@@ -1,15 +1,24 @@
-package senori.or.jp.newkids;
+package senori.or.jp.newkids.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+
+import senori.or.jp.newkids.R;
 
 public class IntroActivity extends Activity {
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        Glide.with(this).fromResource().load(R.drawable.intro).into(imageView);
+
         beforeIntro();
     }
 
@@ -20,13 +29,12 @@ public class IntroActivity extends Activity {
             public void run() {
                 Intent intent = new Intent(IntroActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                intent.putExtra("intro", false);
                 startActivity(intent);
 
                 overridePendingTransition(android.R.anim.fade_in,
                         android.R.anim.fade_out);
                 finish();
             }
-        }, 5000);
+        }, 3000);
     }
 }

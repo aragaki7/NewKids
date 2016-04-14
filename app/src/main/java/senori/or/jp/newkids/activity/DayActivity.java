@@ -1,4 +1,4 @@
-package senori.or.jp.newkids;
+package senori.or.jp.newkids.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import senori.or.jp.newkids.R;
 import senori.or.jp.newkids.adapter.SectionsPagerAdapter;
 
 public class DayActivity extends ActionBarActivity implements TabLayout.OnTabSelectedListener {

@@ -3,9 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#b7c7e8</item>
-        <item name="colorPrimaryDark">#838fa6</item>
+        <item name="colorPrimary">#664533</item>
+        <item name="colorPrimaryDark">#564533</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:color">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme_Gallay" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -41,4 +42,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="mydialg">
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+    </style>
 </resources>

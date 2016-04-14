@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">NewKids</string>
+    <string name="app_name">ShareRing</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_add">Add</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -12,8 +12,9 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -29,4 +30,12 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_write">WriteActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- key -->
+    <string name="key_days">days</string>
+    <string name="key_email">email</string>
+    <string name="key_nicname">nicname</string>
+    <string name="key_id">id</string>
 </resources>

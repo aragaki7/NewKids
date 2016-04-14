@@ -1,20 +1,15 @@
 package senori.or.jp.newkids.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import senori.or.jp.newkids.MainActivity;
-import senori.or.jp.newkids.frament.AlbumFragment;
-import senori.or.jp.newkids.frament.MenuFragment;
-import senori.or.jp.newkids.frament.NoticeFragment;
-import senori.or.jp.newkids.frament.ScheduleFragment;
+import senori.or.jp.newkids.frament.NoticeBoardFragment;
+import senori.or.jp.newkids.frament.SNSFragment;
+import senori.or.jp.newkids.frament.MyFragment;
 
 /**
  * Created by JupiteR on 2016-02-16.
@@ -38,30 +33,27 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
 
-            case 0:
-
-                fragment = new NoticeFragment();
-                //    return new NoticeFragment();
-                break;
             case 1:
 
-                fragment = new AlbumFragment();
-//                tabLayout.setVisibility(View.INVISIBLE);
-//                tabLayout.layout(0, 0, 0, 0);
+                fragment = new SNSFragment();
+
                 break;
-            //return new AlbumFragment();
+            case 0:
+                fragment = new NoticeBoardFragment();
+                break;
+
             case 2:
-                fragment = new ScheduleFragment();
-//                tabLayout.setVisibility(View.VISIBLE);
+                fragment = new MyFragment();
                 break;
-            //return new NoticeFragment();
-            case 3:
-
-                fragment = new MenuFragment();
-//                tabLayout.setVisibility(View.VISIBLE);
-                break;
-            //           return new AlbumFragment();
-
+//
+//            case 3:
+//                fragment = new SuggestsFragment();
+//
+//                break;
+//
+//            case 4:
+//                fragment = new NoticeBoardFragment();
+//                break;
         }
         return fragment;
     }
@@ -76,7 +68,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 
 

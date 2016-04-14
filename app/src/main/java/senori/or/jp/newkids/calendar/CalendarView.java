@@ -2,7 +2,6 @@ package senori.or.jp.newkids.calendar;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.Toolbar;
@@ -20,8 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-
-import senori.or.jp.newkids.DayActivity;
 
 public class CalendarView {
     private static int ROWS = 6;
@@ -649,36 +646,11 @@ public class CalendarView {
 
     // / �޷¿��� ��¥�� Ŭ���ϸ� �� �Լ��� �θ���.
     public void myClickEvent(int yyyy, int MM, int dd, int day_week) {
-//        for (int i = 0; i < list.size(); i++) {
-//            // Log.d("asdfa", )
-//            if (list.get(i).get_YEAR() == yyyy
-//                    && list.get(i).get_MONTH() == MM + 1
-//                    && list.get(i).get_DAY() == dd) {
-//
-//                Intent intent = new Intent(context, SaveActivity.class);
-//                intent.putExtra("id", list.get(i).get_ID());
-//                intent.putExtra("yyyy", yyyy);
-//                intent.putExtra("mm", MM);
-//                intent.putExtra("dd", dd);
-//                intent.putExtra("week", day_week);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                context.startActivity(intent);
-//                new MainActivity().finish();
-//                return;
-//            }
-//
-//        }
-//        Intent intent = new Intent(context, SaveActivity.class);
-//        intent.putExtra("yyyy", yyyy);
-//        intent.putExtra("mm", MM);
-//        intent.putExtra("dd", dd);
-//        intent.putExtra("week", day_week);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+
+//        Intent intent = new Intent(context, DayActivity.class);
+//        intent.putExtra("day", (yyyy + "." + String.format("%02d", MM + 1) + "." + String.format("%02d", dd)));
 //        context.startActivity(intent);
-//        new MainActivity().finish();
-        Intent intent = new Intent(context, DayActivity.class);
-        intent.putExtra("day", (yyyy + "." + String.format("%02d", MM + 1) + "." + String.format("%02d", dd)));
-        context.startActivity(intent);
     }
 
     public int pixelToDip(int arg) {

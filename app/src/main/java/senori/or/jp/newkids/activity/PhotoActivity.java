@@ -1,4 +1,4 @@
-package senori.or.jp.newkids;
+package senori.or.jp.newkids.activity;
 
 
 import android.app.Activity;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
+import senori.or.jp.newkids.R;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PhotoActivity extends Activity {
