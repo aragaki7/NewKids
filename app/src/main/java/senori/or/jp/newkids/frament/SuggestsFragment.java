@@ -8,35 +8,18 @@ import android.view.ViewGroup;
 
 import senori.or.jp.newkids.R;
 
+public class SuggestsFragment extends Fragment {
 
-public class ScheduleFragment extends Fragment {
-
-
-    public ScheduleFragment() {
+    public SuggestsFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule, container, false);
+        return inflater.inflate(R.layout.fragment_suggests, container, false);
     }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-    }
-
 
 }

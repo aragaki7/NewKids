@@ -27,10 +27,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
 
@@ -45,13 +47,12 @@ public class MainActivity extends AppCompatActivity
 
     private ViewPager viewPager;
     private ViewPager toolbarviewpager;
-    private TabLayout tabLayout;
+    //    private TabLayout tabLayout;
     private SectionsPagerAdapter sectionsPagerAdapter;
     private ToolbarViewPagerAdapter viewPagerAdapter;
     private TextView text_email;
     private TextView text_nicname;
-    private ImageView imageView;
-
+    private CircularImageView imageView;
     public ArrayList<Item> list = new ArrayList<Item>();
     private NavigationView navigationView;
 
@@ -68,36 +69,34 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(null);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // toolbar.setBackgroundResource(R.drawable.cloudqw);
 
 
-        tabLayout = (TabLayout) findViewById(R.id.tablayout);
+//        tabLayout = (TabLayout) findViewById(R.id.tablayout);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         toolbarviewpager = (ViewPager) findViewById(R.id.toolbarviewpager);
 
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_assignment_black_36dp), 0);
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_insert_photo_black_36dp), 1);
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_person_black_36dp), 2);
+//        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_assignment_black_36dp), 0);
+//        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_insert_photo_black_36dp), 1);
+//        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_person_black_36dp), 2);
 
         sectionsPagerAdapter = new
 
-                SectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext(), tabLayout);
+                SectionsPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter = new ToolbarViewPagerAdapter(getSupportFragmentManager());
         toolbarviewpager.setAdapter(viewPagerAdapter);
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(toolbarviewpager);
 
 
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+//        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         viewPager.setAdapter(sectionsPagerAdapter);
         //  tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setOnTabSelectedListener(this);
+//        tabLayout.setOnTabSelectedListener(this);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -110,7 +109,11 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         text_email = (TextView) navigationView.getHeaderView(0).findViewById(R.id.text_email);
         text_nicname = (TextView) navigationView.getHeaderView(0).findViewById(R.id.text_nicname);
+        LinearLayout button_add = (LinearLayout) navigationView.getHeaderView(0).findViewById(R.id.button_add);
 
+        button_add.setOnClickListener(this);
+
+        imageView = (CircularImageView) navigationView.getHeaderView(0).findViewById(R.id.imageView);
 
         handler = new Handler() {
             @Override
@@ -168,15 +171,20 @@ public class MainActivity extends AppCompatActivity
             navigationView.inflateMenu(R.menu.login);
             text_email.setText(null);
             text_nicname.setText("로그인");
-            imageView = null;
+            imageView.setImageResource(R.drawable.profile);
+            new Pre(this).setUser(getString(R.string.key_icon), "null");
+            new Pre(this).setUser(getString(R.string.key_cover), "null");
         } else {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.logout);
             text_email.setText(new Pre(this).getUser(getString(R.string.key_email)));
             text_nicname.setText(new Pre(this).getUser(getString(R.string.key_nicname)));
-            imageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.imageView);
-            imageView.setOnClickListener(this);
 
+            imageView.setBorderWidth(10);
+            imageView.addShadow();
+            imageView.setOnClickListener(this);
+            if (!new Pre(this).getUser(getString(R.string.key_icon)).equals("null"))
+                Glide.with(this).load("http://133.130.88.202:8080/Images/imags/" + new Pre(this).getUser(getString(R.string.key_icon))).into(imageView);
 
         }
         ConnectivityManager manager =
@@ -224,7 +232,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add) {
 
             Intent intent;
             if (new Pre(getApplicationContext()).getUser(getString(R.string.key_id)) == null) {
@@ -252,24 +260,29 @@ public class MainActivity extends AppCompatActivity
             } else {
                 new Pre(this).setUser(getString(R.string.key_id), null);
                 new Pre(this).setUser(getString(R.string.key_nicname), null);
+                new Pre(this).setUser(getString(R.string.key_cover), null);
+                new Pre(this).setUser(getString(R.string.key_icon), null);
                 Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
                 onResume();
             }
 
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        }
+//        else if (id == R.id.nav_gallery) {
+//
+//
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        }
+        else if (id == R.id.nav_manage) {
             intent = new Intent(getApplicationContext(), SettingActivity.class);
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
+//        else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
         if (intent != null) {
             startActivity(intent);
         }
@@ -297,9 +310,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.imageView) {
-            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+            Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+            intent.putExtra("nicname", new Pre(this).getUser(getString(R.string.key_nicname)));
             startActivity(intent);
         }
+        if (v.getId() == R.id.button_add) {
+            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            startActivity(intent);
+        }
+
     }
 
 
