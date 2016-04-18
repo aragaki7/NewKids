@@ -24,11 +24,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import senori.or.jp.newkids.R;
-import senori.or.jp.newkids.adapter.ReplyAdapter;
-import senori.or.jp.newkids.data.Reply_Data;
-import senori.or.jp.newkids.preference.Pre;
-import senori.or.jp.newkids.thread.ServerThread;
+import senori.or.jp.sharering.R;
+import senori.or.jp.sharering.adapter.ReplyAdapter;
+import senori.or.jp.sharering.data.Reply_Data;
+import senori.or.jp.sharering.preference.Pre;
+import senori.or.jp.sharering.thread.ServerThread;
+
 
 public class ReplyActivity extends AppCompatActivity implements ServerThread.OnConnect {
 

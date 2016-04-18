@@ -30,9 +30,10 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import senori.or.jp.newkids.R;
-import senori.or.jp.newkids.preference.Pre;
-import senori.or.jp.newkids.thread.ServerThread;
+import senori.or.jp.sharering.R;
+import senori.or.jp.sharering.preference.Pre;
+import senori.or.jp.sharering.thread.ServerThread;
+
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
