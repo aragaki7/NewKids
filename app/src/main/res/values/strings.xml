@@ -38,4 +38,9 @@
     <string name="key_email">email</string>
     <string name="key_nicname">nicname</string>
     <string name="key_id">id</string>
+    <string name="key_icon">icon</string>
+    <string name="key_cover">cover</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

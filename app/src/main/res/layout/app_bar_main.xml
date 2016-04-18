@@ -49,21 +49,22 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tablayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/tabbar"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="#664533"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="#ffffff"
-            app:tabTextColor="#664533">
+        <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/tablayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/tabbar"-->
+        <!--app:tabGravity="fill"-->
+        <!--app:tabIndicatorColor="#664533"-->
+        <!--app:tabMode="fixed"-->
+        <!--app:tabSelectedTextColor="#ffffff"-->
+        <!--app:tabTextColor="#664533">-->
 
-        </android.support.design.widget.TabLayout>
+        <!--</android.support.design.widget.TabLayout>-->
 
     </android.support.design.widget.AppBarLayout>
 
