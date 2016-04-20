@@ -20,8 +20,8 @@ public class ConnReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
 
-            String status = getConnectivityStatusString(context);
-            Toast.makeText(context, status, Toast.LENGTH_SHORT).show();
+            getConnectivityStatusString(context);
+
 
         }
     }
@@ -42,13 +42,14 @@ public class ConnReceiver extends BroadcastReceiver {
         return TYPE_NOT_CONNECTED;
     }
 
-    public static String getConnectivityStatusString(Context context) {
+    public static void getConnectivityStatusString(Context context) {
         int conn = getConnectivityStatus(context);
         String status = null;
 
         if (conn == TYPE_NOT_CONNECTED) {
             status = "인터넷에 연결되어 있지 않습니다.";
+            Toast.makeText(context, status, Toast.LENGTH_SHORT).show();
         }
-        return status;
+
     }
 }

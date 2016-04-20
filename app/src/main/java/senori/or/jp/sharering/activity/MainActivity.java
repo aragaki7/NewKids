@@ -1,11 +1,6 @@
 package senori.or.jp.sharering.activity;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -98,7 +93,8 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(sectionsPagerAdapter);
         //  tabLayout.setupWithViewPager(viewPager);
 //        tabLayout.setOnTabSelectedListener(this);
-
+        CircleIndicator indicators = (CircleIndicator) findViewById(R.id.indicators);
+        indicators.setViewPager(viewPager);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -145,24 +141,24 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void DialogHtmlView(final Context context) {
-        AlertDialog.Builder ab = new AlertDialog.Builder(context);
-        ab.setMessage("네트워크 오류");
-        ab.setPositiveButton("재접속", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                onResume();
-            }
-        });
-        ab.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                MainActivity.this.finish();
-            }
-        });
-        ab.show();
-    }
+//    private void DialogHtmlView(final Context context) {
+//        AlertDialog.Builder ab = new AlertDialog.Builder(context);
+//        ab.setMessage("네트워크 오류");
+//        ab.setPositiveButton("재접속", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//                onResume();
+//            }
+//        });
+//        ab.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                MainActivity.this.finish();
+//            }
+//        });
+//        ab.show();
+//    }
 
     @Override
     protected void onResume() {
@@ -188,18 +184,18 @@ public class MainActivity extends AppCompatActivity
                 Glide.with(this).load("http://133.130.88.202:8080/Images/imags/" + new Pre(this).getUser(getString(R.string.key_icon))).into(imageView);
 
         }
-        ConnectivityManager manager =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-        if (mobile.isConnected() || wifi.isConnected()) {
-            // WIFI, 3G 어느곳에도 연결되지 않았을때
-
-        } else {
-            Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show();
-            DialogHtmlView(this);
-        }
+//        ConnectivityManager manager =
+//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+//        NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+//
+//        if (mobile.isConnected() || wifi.isConnected()) {
+//            // WIFI, 3G 어느곳에도 연결되지 않았을때
+//
+//        } else {
+//            Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show();
+//            DialogHtmlView(this);
+//        }
     }
 
     @Override

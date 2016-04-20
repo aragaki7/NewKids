@@ -32,6 +32,7 @@ import java.util.List;
 import senori.or.jp.sharering.R;
 import senori.or.jp.sharering.adapter.UserAdapter;
 import senori.or.jp.sharering.data.UserData;
+import senori.or.jp.sharering.preference.Pre;
 import senori.or.jp.sharering.thread.ServerThread;
 
 
@@ -42,7 +43,6 @@ public class UserActivity extends AppCompatActivity implements ServerThread.OnCo
 
     private RecyclerView recyclerView;
     private UserAdapter adapter;
-
     private ImageView imageView_cover;
     private CircularImageView imageView_icon;
     private View view;
@@ -109,7 +109,7 @@ public class UserActivity extends AppCompatActivity implements ServerThread.OnCo
     @Override
     public void onPostExecute() {
         list.clear();
-        Log.d("str", str);
+        //Log.d("str", str);
 
         try {
             JSONObject jsonObject = new JSONObject(str);
@@ -136,8 +136,9 @@ public class UserActivity extends AppCompatActivity implements ServerThread.OnCo
         adapter = new UserAdapter(getApplicationContext(), list, view);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-//        if (list.get(0).getNicname().equals(new Pre(this).getUser(getString(R.string.key_nicname)))) {
-//            view.setVisibility(View.INVISIBLE);
-//        }
+        if (list.get(0).getNicname().equals(new Pre(this).getUser(getString(R.string.key_nicname)))) {
+            view.setVisibility(View.INVISIBLE);
+        }
     }
+
 }

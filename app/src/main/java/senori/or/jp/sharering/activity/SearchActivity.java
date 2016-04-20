@@ -31,14 +31,18 @@ import senori.or.jp.sharering.R;
 import senori.or.jp.sharering.adapter.SearchAdapter;
 import senori.or.jp.sharering.data.SearchData;
 import senori.or.jp.sharering.info.RecyclerViewOnItemClicklistener;
+import senori.or.jp.sharering.preference.Pre;
 import senori.or.jp.sharering.thread.ServerThread;
 
 
 public class SearchActivity extends AppCompatActivity implements ServerThread.OnConnect {
 
     private RecyclerView recyclerView;
+    private RecyclerView recyclerView_access;
     private SearchAdapter adapter;
+    private SearchAdapter adapter_access;
     private ArrayList<SearchData> list = new ArrayList<SearchData>();
+    private ArrayList<SearchData> list_accept = new ArrayList<SearchData>();
     private String newText;
     private String str;
 
@@ -50,8 +54,16 @@ public class SearchActivity extends AppCompatActivity implements ServerThread.On
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+
+        recyclerView_access = (RecyclerView) findViewById(R.id.recyclerview_acces);
+        recyclerView_access.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView_access.setHasFixedSize(true);
+
         adapter = new SearchAdapter(this, list);
         recyclerView.setAdapter(adapter);
+
+        adapter_access = new SearchAdapter(this, list_accept);
+        recyclerView_access.setAdapter(adapter_access);
 
 
         recyclerView.addOnItemTouchListener(new RecyclerViewOnItemClicklistener(this, recyclerView, new RecyclerViewOnItemClicklistener.OnItemClickListener() {
@@ -67,7 +79,60 @@ public class SearchActivity extends AppCompatActivity implements ServerThread.On
 
             }
         }));
-        //new ServerThread(SearchActivity.this).execute(0);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        new ServerThread(new ServerThread.OnConnect() {
+            private String str;
+
+            @Override
+            public void onPreExecute() {
+
+            }
+
+            @Override
+            public void doInBackground() {
+                String uri = "http://133.130.88.202:8080/project/accept.jsp";
+                try {
+
+                    HttpClient client = new DefaultHttpClient();
+                    HttpPost post = new HttpPost(uri);
+                    List params = new ArrayList(); // 파라미터를 List에 담아서 보냅니다.
+                    params.add(new BasicNameValuePair("id", new Pre(getApplicationContext()).getUser(getString(R.string.key_id)))); //파라미터 이름, 보낼 데이터 순입니다.
+
+                    UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params);
+                    post.setEntity(ent);
+                    HttpResponse responsePOST = client.execute(post);
+                    HttpEntity resEntity = responsePOST.getEntity();
+                    str = EntityUtils.toString(resEntity).trim();
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void onPostExecute() {
+                list_accept.clear();
+                try {
+                    JSONObject jsonObject = new JSONObject(str);
+                    JSONArray jsonArray = jsonObject.getJSONArray("friend");
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject c = jsonArray.getJSONObject(i);
+
+                        list_accept.add(new SearchData(c.getInt("id"), c.getString("nicname"), c.getString("icon")));
+                    }
+                } catch (Exception e) {
+
+                }
+                adapter_access.notifyDataSetChanged();
+            }
+        }).execute(0);
     }
 
     @Override
@@ -123,7 +188,6 @@ public class SearchActivity extends AppCompatActivity implements ServerThread.On
 
     @Override
     public void doInBackground() {
-
         String uri = "http://133.130.88.202:8080/project/usersearch.jsp";
         try {
 

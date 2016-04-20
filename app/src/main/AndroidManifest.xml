@@ -56,7 +56,6 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.ProfileActivity" />
         <activity
             android:name=".activity.UserActivity"
             android:label="@string/title_activity_scrolling"
