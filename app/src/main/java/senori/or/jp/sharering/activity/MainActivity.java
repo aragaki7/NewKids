@@ -166,11 +166,14 @@ public class MainActivity extends AppCompatActivity
         if (new Pre(this).getUser(getString(R.string.key_id)) == null) {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.login);
-            text_email.setText(null);
-            text_nicname.setText("로그인");
-            imageView.setImageResource(R.drawable.profile);
+//            text_email.setText(null);
+//            text_nicname.setText("로그인");
+//            imageView.setImageResource(R.drawable.profile);
             new Pre(this).setUser(getString(R.string.key_icon), "null");
             new Pre(this).setUser(getString(R.string.key_cover), "null");
+            Intent intent = new Intent(getApplicationContext(), LogIn.class);
+            startActivity(intent);
+            finish();
         } else {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.logout);

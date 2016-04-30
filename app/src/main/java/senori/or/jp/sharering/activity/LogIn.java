@@ -1,5 +1,6 @@
 package senori.or.jp.sharering.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -43,34 +44,16 @@ public class LogIn extends AppCompatActivity implements ServerThread.OnConnect {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_intro);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        Glide.with(this).fromResource().load(R.drawable.intro).into(imageView);
+        beforeIntro();
 
 //        Toolbar toolbar = new Toolbar(this);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().hide();
-        email = (AutoCompleteTextView) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        imageView = (ImageView) findViewById(R.id.imageView);
-        email.setText(new Pre(this).getUser(getString(R.string.key_email)));
 
-        btn_signIn = (Button) findViewById(R.id.email_sign_in_button);
-        btn_signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new ServerThread(LogIn.this).execute(0);
-            }
-        });
-
-        btn_singup = (Button) findViewById(R.id.sign_up);
-        btn_singup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        Glide.with(this).fromResource().load(R.drawable.intro).into(imageView);
     }
 
     @Override
@@ -108,7 +91,7 @@ public class LogIn extends AppCompatActivity implements ServerThread.OnConnect {
         String email = null;
         String icon = null;
         String cover = null;
-        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+
         try {
 
             JSONObject jsonObject = new JSONObject(str);
@@ -138,6 +121,8 @@ public class LogIn extends AppCompatActivity implements ServerThread.OnConnect {
             }
             if (id != 0) {
 
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), "이메일 또는 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show();
@@ -146,5 +131,42 @@ public class LogIn extends AppCompatActivity implements ServerThread.OnConnect {
             e.printStackTrace();
         }
 
+    }
+
+    private void beforeIntro() {
+        // 약 2초간 인트로 화면을 출력.
+        getWindow().getDecorView().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (new Pre(LogIn.this).getUser(getString(R.string.key_id)) != null) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    setContentView(R.layout.activity_login);
+                    email = (AutoCompleteTextView) findViewById(R.id.email);
+                    password = (EditText) findViewById(R.id.password);
+                    imageView = (ImageView) findViewById(R.id.imageView);
+                    email.setText(new Pre(LogIn.this).getUser(getString(R.string.key_email)));
+
+                    btn_signIn = (Button) findViewById(R.id.email_sign_in_button);
+                    btn_signIn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            new ServerThread(LogIn.this).execute(0);
+                        }
+                    });
+
+                    btn_singup = (Button) findViewById(R.id.sign_up);
+                    btn_singup.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+                    Glide.with(LogIn.this).fromResource().load(R.drawable.intro).into(imageView);
+                }
+            }
+        }, 1000);
     }
 }
