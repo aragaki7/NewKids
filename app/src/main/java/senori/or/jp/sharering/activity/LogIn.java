@@ -161,7 +161,8 @@ public class LogIn extends AppCompatActivity implements ServerThread.OnConnect {
                     btn_singup.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
+                            Intent intent = new Intent(getApplicationContext(), CreateUserActivity.class);
+                            startActivity(intent);
                         }
                     });
                     Glide.with(LogIn.this).fromResource().load(R.drawable.intro).into(imageView);

@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="16dp"
-                    android:background="#aa664533"
+                    android:background="@color/colorButton"
                     android:text="@string/action_sign_in"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
@@ -96,7 +96,7 @@
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#aa664533"
+                    android:background="@color/colorButton"
                     android:text="@string/action_register"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />

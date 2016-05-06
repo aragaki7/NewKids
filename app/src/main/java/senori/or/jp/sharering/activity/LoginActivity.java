@@ -378,21 +378,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             try {
                 String uri = "http://133.130.88.202:8080/project/login.jsp?email=" + mEmail + "&pw=" + mPassword;
-//                HttpClient client = new DefaultHttpClient();
-//
-//                // 객체 연결 설정 부분, 연결 최대시간 등등
-//                HttpParams httpParams = client.getParams();
-//                HttpConnectionParams.setConnectionTimeout(httpParams, 5000);
-//                HttpConnectionParams.setSoTimeout(httpParams, 5000);
-//
-//                // Post객체 생성
-//                HttpPost httpPost = new HttpPost(uri);
-//
-//
-//                UrlEncodedFormEntity entity = new UrlEncodedFormEntity(list, "UTF-8");
-//                httpPost.setEntity(entity);
-//                client.execute(httpPost);
-                //  Log.d("test", EntityUtils.getContentCharSet(entity).toString());
+
 
                 BufferedReader bufferedReader;
                 try {

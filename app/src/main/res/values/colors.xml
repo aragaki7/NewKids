@@ -5,4 +5,5 @@
     <color name="colorAccent">#664533</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="colorButton">#aa664533</color>
 </resources>
